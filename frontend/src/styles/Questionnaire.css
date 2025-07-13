@@ -1,0 +1,124 @@
+  /* Questionnaire Container */
+  .questionnaire {
+    background: linear-gradient(135deg, #e0f7fa, #ccf2f4); /* Soft gradient */
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    width: 50%;
+    max-width: 1000px;
+    min-height: 750px;
+    margin: 100px auto 50px;
+    color: #2c3e50;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Step Container */
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Step Heading */
+  .step h2 {
+    font-size: 34px;
+    margin-bottom: 30px;
+    color: #00796b; /* Deep teal */
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* Labels */
+  label {
+    width: 60%;
+    font-size: 20px;
+    font-weight: 500;
+    color: #37474f;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+    margin-bottom: 25px;
+  }
+
+  /* Dropdowns & Inputs */
+  select, input {
+    padding: 16px;
+    border: 2px solid #009688; /* Soft teal border */
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: #ffffff;
+    color: #333;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    width: 100%;
+  }
+
+  /* Hover & Focus Effects */
+  select:hover, input:hover {
+    box-shadow: 0 0 12px rgba(0, 150, 136, 0.2);
+  }
+
+  select:focus, input:focus {
+    border-color: #009688;
+    box-shadow: 0 0 12px rgba(0, 150, 136, 0.3);
+    outline: none;
+  }
+
+  /* Submit Button */
+  .submit-button {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .submit-button button {
+    background: linear-gradient(135deg, #26a69a, #00bfa5); /* Gradient button */
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .submit-button button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 191, 165, 0.3);
+  }
+
+  .submit-button button:active {
+    transform: translateY(0);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    .questionnaire {
+      width: 90%;
+      padding: 30px;
+    }
+
+    .step h2 {
+      font-size: 28px;
+    }
+
+    select, input {
+      padding: 14px;
+      font-size: 16px;
+    }
+
+    .submit-button button {
+      padding: 14px 30px;
+      font-size: 16px;
+    }
+
+    label {
+      width: 100%;
+    }
+  }

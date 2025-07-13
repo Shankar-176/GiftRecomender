@@ -1,0 +1,71 @@
+.recommendations-container {
+  margin-top: 30px;
+  padding: 30px 20px;
+  background-color: #f2f4f7;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.recommendations-container h2 { 
+  text-align: center;
+  color: #222;
+  margin-bottom: 30px;
+  font-size: 26px;
+}
+
+.error-msg {
+  text-align: center;
+  color: red;
+  margin-bottom: 20px;
+}
+
+.recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.recommendation-card {
+  background-color: #e9eff5;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gift-image {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  background-color: #d6e0ea;
+}
+
+.recommendation-card h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 8px 0;
+  text-align: center;
+}
+
+.description,
+.price,
+.platform {
+  font-size: 14px;
+  color: #555;
+  margin: 4px 0;
+  text-align: center;
+}
+
+.view-link {
+  margin-top: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #0066cc;
+  background-color: #d2e4f1;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
