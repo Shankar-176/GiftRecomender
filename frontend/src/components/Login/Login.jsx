@@ -16,21 +16,21 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const url = `${BACKEND_URL}/api/auth`;
-      const { data: res } = await axios.post(url, data);
+  e.preventDefault();
+  try {
+    const url = `${BACKEND_URL}/api/auth`;
+    const res = await axios.post(url, data);
 
-      localStorage.setItem("token", res.data.token);
-      navigate("/");
-    } catch (error) {
-      setError(
-        error.response?.data?.message || 
-        error.message || 
-        "An error occurred. Please try again."
-      );
-    }
-  };
+    localStorage.setItem("token", res.data.token); // ✅ now safe
+    navigate("/");
+  } catch (error) {
+    setError(
+      error.response?.data?.message || 
+      error.message || 
+      "An error occurred. Please try again."
+    );
+  }
+};
 
   return (
     <div className={styles.login_container}>
@@ -64,7 +64,7 @@ const Login = () => {
             {/* Development Info - Only shows in localhost */}
             {window.location.hostname === "localhost" && (
               <div className={styles.dev_info}>
-                <p>Using backend: {BACKEND_URL}</p>
+                {/* <p>Using backend: {BACKEND_URL}</p> */}
                 <button 
                   type="button"
                   className={styles.switch_btn}
@@ -76,7 +76,7 @@ const Login = () => {
                     localStorage.setItem("backendOverride", newUrl);
                   }}
                 >
-                  Switch to {BACKEND_URL.includes("localhost") ? "Deployed" : "Local"} Backend
+                  {/* Switch to {BACKEND_URL.includes("localhost") ? "Deployed" : "Local"} Backend */}
                 </button>
               </div>
             )}

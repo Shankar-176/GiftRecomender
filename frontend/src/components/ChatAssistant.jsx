@@ -1,4 +1,4 @@
-
+// ChatAssistant.jsx (Full Updated File)
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
@@ -13,18 +13,15 @@ const ChatAssistant = () => {
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
-  // Initialize session
   useEffect(() => {
     const newSessionId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     setSessionId(newSessionId);
   }, []);
 
-  // Auto-scroll to bottom
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  // Focus input when opened
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
@@ -43,7 +40,6 @@ const ChatAssistant = () => {
     setInputMessage("");
     setIsLoading(true);
 
-    // Add user message to chat
     const newUserMessage = {
       id: `user-${Date.now()}`,
       message: userMessage,
@@ -53,7 +49,6 @@ const ChatAssistant = () => {
     setMessages(prev => [...prev, newUserMessage]);
 
     try {
-      // Get user ID from localStorage (from auth token)
       const token = localStorage.getItem("token");
       const userId = token || "anonymous-user";
 
@@ -101,10 +96,9 @@ const ChatAssistant = () => {
   const startNewChat = () => {
     setMessages([]);
     setIsOpen(true);
-    // Add welcome message
     const welcomeMessage = {
       id: "welcome",
-      message: "Hi! I'm your AI gift advisor. I'm here to help you find the perfect gifts for any occasion. What can I help you with today?",
+      message: "Hello! I'm your gift expert 🤖. Ask me for help finding the perfect gift for anyone!",
       sender: "assistant",
       timestamp: new Date().toISOString()
     };
@@ -113,7 +107,6 @@ const ChatAssistant = () => {
 
   return (
     <>
-      {/* Chat Toggle Button */}
       <motion.button
         className="chat-toggle-btn"
         onClick={() => isOpen ? setIsOpen(false) : startNewChat()}
@@ -124,10 +117,9 @@ const ChatAssistant = () => {
           rotate: isOpen ? 45 : 0 
         }}
       >
-        {isOpen ? "✕" : "💬"}
+        {isOpen ? "✕" : "🤖"}
       </motion.button>
 
-      {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -137,26 +129,20 @@ const ChatAssistant = () => {
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Chat Header */}
             <div className="chat-header">
               <div className="chat-title">
                 <span className="ai-indicator">🤖</span>
                 <div>
-                  <h3>AI Gift Advisor</h3>
-                  <p>Powered by Gemini 2.0 Flash</p>
+                  <h3>GiftBot</h3>
+                  <p>Ask me anything about gifting 🎁</p>
                 </div>
               </div>
               <div className="chat-controls">
-                <button onClick={clearChat} className="clear-btn" title="New Chat">
-                  🗑️
-                </button>
-                <button onClick={() => setIsOpen(false)} className="close-btn" title="Close">
-                  ✕
-                </button>
+                <button onClick={clearChat} className="clear-btn" title="New Chat">🗑️</button>
+                <button onClick={() => setIsOpen(false)} className="close-btn" title="Close">✕</button>
               </div>
             </div>
 
-            {/* Chat Messages */}
             <div className="chat-messages">
               <AnimatePresence>
                 {messages.map((msg) => (
@@ -170,53 +156,37 @@ const ChatAssistant = () => {
                     <div className="message-content">
                       <div className="message-text">{msg.message}</div>
                       <div className="message-time">
-                        {new Date(msg.timestamp).toLocaleTimeString([], { 
-                          hour: '2-digit', 
-                          minute: '2-digit' 
-                        })}
+                        {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </div>
                     </div>
                   </motion.div>
                 ))}
               </AnimatePresence>
 
-              {/* Loading indicator */}
               {isLoading && (
-                <motion.div
-                  className="message assistant loading"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
+                <motion.div className="message assistant loading" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
                   <div className="message-content">
                     <div className="typing-indicator">
-                      <span></span>
-                      <span></span>
-                      <span></span>
+                      <span></span><span></span><span></span>
                     </div>
                   </div>
                 </motion.div>
               )}
-              
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Chat Input */}
             <form onSubmit={handleSendMessage} className="chat-input-form">
               <input
                 ref={inputRef}
                 type="text"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
-                placeholder="Ask me about gift ideas..."
+                placeholder="Type your message..."
                 className="chat-input"
                 disabled={isLoading}
               />
-              <button
-                type="submit"
-                className="send-btn"
-                disabled={isLoading || !inputMessage.trim()}
-              >
-                {isLoading ? "⏳" : "🚀"}
+              <button type="submit" className="send-btn" disabled={isLoading || !inputMessage.trim()}>
+                {isLoading ? "⏳" : "📨"}
               </button>
             </form>
           </motion.div>

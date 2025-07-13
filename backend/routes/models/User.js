@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
 
 // ✅ Define methods BEFORE exporting the model
 userSchema.methods.generateAuthToken = function () {
-    return jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, { expiresIn: "120d" });
+    return jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, { expiresIn: "360d" });
 };
 
 // ✅ Fix OverwriteModelError

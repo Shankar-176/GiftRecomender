@@ -90,12 +90,12 @@ const Questionnaire = ({ onSubmit = (data) => console.log("Received:", data) }) 
 
         {error && <p className="error-message">{error}</p>}
         
-        {/* Backend info */}
+        {/* Backend info
         {window.location.hostname === "localhost" && (
           <div className="dev-info">
             <p>Using backend: {BACKEND_URL}</p>
           </div>
-        )}
+        )} */}
       </form>
     </motion.div>
   );

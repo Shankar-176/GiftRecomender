@@ -93,7 +93,7 @@ const Signup = () => {
             {/* Backend info */}
             {window.location.hostname === "localhost" && (
               <div className={styles.dev_info}>
-                <p>Using backend: {BACKEND_URL}</p>
+                {/* <p>Using backend: {BACKEND_URL}</p> */}
               </div>
             )}
             

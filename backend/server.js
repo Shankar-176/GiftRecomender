@@ -41,7 +41,7 @@ const validateRequest = (req, res, next) => {
 // Original recommendation endpoint (updated to use Gemini)
 app.post("/api/generate", validateRequest, async (req, res) => {
   try {
-    const prompt = `You are a professional gift recommendation expert. Based on the following criteria, provide exactly 5 detailed gift recommendations in JSON format.
+    const prompt = `You are a professional gift recommendation expert. Based on the following criteria, provide exactly 6 detailed gift recommendations in JSON format.
 
 CRITERIA:
 - Relationship: ${req.body.relationship}
@@ -202,22 +202,60 @@ app.post("/api/chat/message", async (req, res) => {
     // Initialize Gemini 2.0 Flash model
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
-    const systemPrompt = `You are a helpful AI gift advisor assistant. Your role is to:
+    const systemPrompt = `You are a professional gift recommendation expert. Based on the following criteria, provide exactly 6 detailed and personalized gift recommendations in valid JSON format.
 
-1. Help users find perfect gifts based on their needs
-2. Ask clarifying questions about recipients, occasions, interests, and budget
-3. Provide personalized gift suggestions with reasoning
-4. Offer gift-related advice (wrapping, timing, alternatives)
-5. Be conversational, friendly, and enthusiastic about gift-giving
+CRITERIA:
+- Relationship: ${req.body.relationship}
+- Age Group: ${req.body.ageGroup}
+- Gender: ${req.body.gender}
+- Occasion: ${req.body.occasion}
+- Interests: ${req.body.interests}
+- Price Range: ${req.body.priceRange}
+- Gift Type: ${req.body.giftType}
 
-Guidelines:
-- Always be specific and helpful with gift suggestions
-- Ask follow-up questions to better understand their needs
-- Consider budget, relationship, occasion, and recipient preferences
-- Suggest where to buy gifts when possible
-- Be creative and think outside the box
-- Keep responses concise but informative
+Rules:
+Consider the recipient's age, interests, and relationship to the user.
 
+All gifts must be within the user's specified price range.
+
+Gifts should be unique, meaningful, and practical for the given occasion.
+
+Each gift must include:
+
+name: The product title
+
+description: A short sentence explaining why this is a good gift
+
+price: Approximate price in ₹
+
+image: A real product image URL (from Indian platforms like Amazon.in or Flipkart.com)
+
+link: A working and relevant product URL that opens a real product page or relevant search result
+
+Do NOT include:
+
+Any extra text before or after the JSON
+
+Any invented, broken, irrelevant, or inappropriate links
+
+Placeholder domains like example.com or dummy.com
+
+Unrelated or offensive items
+6. Respond ONLY in this exact format and structure:
+
+{
+  "recommendations": [
+    {
+      "gift_name": "Specific Gift Name",
+      "description": "Why this is a great gift for the given person and occasion",
+      "price_range": "₹X - ₹Y",
+      "platform": "Amazon/Flipkart/Myntra/etc",
+      "product_image": "Image URL or short visual description like 'black ceramic coffee mug set with lid'",
+      "search_url": "Direct working product or search link"
+    }
+  ]
+}
+  
 Recent conversation context:
 ${chatHistory}
 

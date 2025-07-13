@@ -1,71 +1,115 @@
-.recommendations-container {
-  margin-top: 30px;
-  padding: 30px 20px;
-  background-color: #f2f4f7;
-  font-family: 'Segoe UI', sans-serif;
+/* src/styles/Recommendations.css */
+.recommendation-page {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  background: #f9fafb;
+  border-radius: 8px;
 }
 
-.recommendations-container h2 { 
+.heading {
+  font-size: 32px;
   text-align: center;
-  color: #222;
-  margin-bottom: 30px;
-  font-size: 26px;
+  color: #1e293b;
+  margin-bottom: 40px;
 }
 
 .error-msg {
   text-align: center;
-  color: red;
-  margin-bottom: 20px;
+  color: #b91c1c;
+  font-size: 18px;
 }
 
 .recommendation-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1100px;
-  margin: 0 auto;
+  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .recommendation-card {
-  background-color: #e9eff5;
-  border-radius: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background: #ececec;
+}
+
+.card-content {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-grow: 1;
 }
 
-.gift-image {
-  width: 100%;
-  height: 160px;
-  object-fit: contain;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  background-color: #d6e0ea;
+.card-content h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #1e293b;
 }
 
-.recommendation-card h3 {
-  font-size: 18px;
-  color: #333;
-  margin: 8px 0;
-  text-align: center;
+.description {
+  flex-grow: 1;
+  font-size: 14px;
+  color: #475569;
+  margin-bottom: 12px;
 }
 
-.description,
-.price,
+.meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
 .platform {
-  font-size: 14px;
-  color: #555;
-  margin: 4px 0;
-  text-align: center;
+  font-size: 13px;
+  color: #374151;
+  font-weight: 600;
 }
 
-.view-link {
-  margin-top: 10px;
-  font-size: 14px;
+.price {
+  font-size: 16px;
+  color: #047857;
+  font-weight: 600;
+}
+
+.btn-view {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  background: #2563eb;
+  color: white;
   text-decoration: none;
-  color: #0066cc;
-  background-color: #d2e4f1;
-  padding: 6px 12px;
   border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.btn-view:hover {
+  background: #1e40af;
+}
+
+@media (max-width: 600px) {
+  .heading {
+    font-size: 28px;
+  }
+
+  .recommendation-page {
+    padding: 10px;
+  }
 }
