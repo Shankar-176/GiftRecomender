@@ -103,3 +103,11 @@
 	color: white;
 	margin: 10px;
 }
+
+.loading_msg {
+  color: #555;
+  margin: 10px 0;
+  font-size: 14px;
+  font-style: italic;
+}
+

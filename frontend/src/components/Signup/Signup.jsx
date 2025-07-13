@@ -11,12 +11,11 @@ const Signup = () => {
     password: "",
   });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false); // ✅ loading state
   const navigate = useNavigate();
 
-  // Configurable backend URL
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 
-                      localStorage.getItem("backendOverride") || 
-                      "https://giftrecomenderproject.onrender.com";
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://giftrecomenderproject.onrender.com";
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -24,17 +23,27 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // ✅ show loading message
     try {
       const url = `${BACKEND_URL}/api/users`;
       await axios.post(url, data);
-      navigate("/login");
+
+      setSuccess("Signup successful! Redirecting to login...");
+      setError("");
+      setLoading(false);
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
       console.error("Signup Error:", error);
       setError(
-        error.response?.data?.message || 
-        error.message || 
+        error.response?.data?.message ||
+        error.message ||
         "Signup failed. Please try again."
       );
+      setSuccess("");
+      setLoading(false);
     }
   };
 
@@ -88,17 +97,14 @@ const Signup = () => {
               required
               className={styles.input}
             />
+
+            {/* ✅ Show messages */}
+            {loading && <div className={styles.loading_msg}>Please wait while signing up...</div>}
             {error && <div className={styles.error_msg}>{error}</div>}
-            
-            {/* Backend info */}
-            {window.location.hostname === "localhost" && (
-              <div className={styles.dev_info}>
-                {/* <p>Using backend: {BACKEND_URL}</p> */}
-              </div>
-            )}
-            
-            <button type="submit" className={styles.green_btn}>
-              Sign Up
+            {success && <div className={styles.success_msg}>{success}</div>}
+
+            <button type="submit" className={styles.green_btn} disabled={loading}>
+              {loading ? "Signing Up..." : "Sign Up"}
             </button>
           </form>
         </div>
