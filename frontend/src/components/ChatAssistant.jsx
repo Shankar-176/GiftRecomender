@@ -53,7 +53,7 @@ const ChatAssistant = () => {
       const userId = token || "anonymous-user";
 
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'}/api/chat/message`,
+        `${import.meta.env.VITE_BACKEND_URL || 'https://giftrecomenderproject.onrender.com'}/api/chat/message`,
         {
           sessionId,
           userId,

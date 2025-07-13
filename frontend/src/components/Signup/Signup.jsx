@@ -16,7 +16,7 @@ const Signup = () => {
   // Configurable backend URL
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 
                       localStorage.getItem("backendOverride") || 
-                      "https://gift-recommend.onrender.com";
+                      "https://giftrecomenderproject.onrender.com";
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });

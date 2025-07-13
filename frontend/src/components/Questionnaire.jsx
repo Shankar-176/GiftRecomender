@@ -14,7 +14,7 @@ const Questionnaire = ({ onSubmit = (data) => console.log("Received:", data) }) 
   // Configurable backend URL
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 
                       localStorage.getItem("backendOverride") || 
-                      "https://gift-recommend.onrender.com";
+                      "https://giftrecomenderproject.onrender.com";
 
   const onFormSubmit = async (formData) => {
     setLoading(true);

@@ -15,7 +15,7 @@ if (localStorage.getItem("backendOverride")) {
 } else {
   // Set initial override for local development
   if (window.location.hostname === "localhost") {
-    localStorage.setItem("backendOverride", "http://localhost:5000");
+    localStorage.setItem("backendOverride", "https://giftrecomenderproject.onrender.com");
   }
 }
 

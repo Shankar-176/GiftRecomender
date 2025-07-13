@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Configurable backend URL - use deployed URL by default
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://gift-recommend.onrender.com";
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://giftrecomenderproject.onrender.com";
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -70,7 +70,7 @@ const Login = () => {
                   className={styles.switch_btn}
                   onClick={() => {
                     const newUrl = BACKEND_URL.includes("localhost") 
-                      ? "https://gift-recommend.onrender.com"
+                      ? "https://giftrecomenderproject.onrender.com"
                       : "http://localhost:5000";
                     alert(`Switching backend to: ${newUrl}\n\nReload page to apply changes`);
                     localStorage.setItem("backendOverride", newUrl);
