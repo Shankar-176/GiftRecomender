@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from "bcryptjs";
-import { User, validate } from "./models/user.js"; // ✅ Fixed import path
+import { User, validate } from "./models/User.js"; // ✅ Fixed import path
+
 
 const router = express.Router();
 
